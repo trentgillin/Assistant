@@ -13,7 +13,10 @@ def speak(audio):
     # [1]=female voice in set Property.
     engine.setProperty('voice', voices[12].id)
 
-    # Method for the speaking of the the assistant
+   # set rate of voices
+   engine.setProperty('rate', 145)
+
+   # Method for the speaking of the the assistant
     engine.say(audio)
 
     # Blocks while processing all the currently
