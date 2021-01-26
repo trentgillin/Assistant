@@ -39,7 +39,7 @@ def takeCommand():
         # seconds of non-speaking audio before
         # a phrase is considered complete
         r.pause_threshold = 0.8
-        r.adjust_for_ambient_noise(source, duration=1)
+        r.adjust_for_ambient_noise(source)
         audio = r.listen(source)
 
         # Now we will be using the try and catch
@@ -49,10 +49,7 @@ def takeCommand():
         try:
             print("Recognizing. . .")
 
-            # for Listening the command in indian
-            # english we can also use 'hi-In'
-            # for hindi recognizing
-            Query = r.recognize_google(audio, language='en-in')
+            Query = r.recognize_sphinx(audio)
             print("You said: ", Query)
 
         except Exception as e:
@@ -74,7 +71,7 @@ def takefirst():
         # seconds of non-speaking audio before
         # a phrase is considered complete
         r.pause_threshold = 0.8
-        r.adjust_for_ambient_noise(source, duration=1)
+        r.adjust_for_ambient_noise(source)
         audio = r.listen(source)
 
         # Now we will be using the try and catch
@@ -82,7 +79,7 @@ def takefirst():
         # it is good else we will have exception
         # handling
         try:
-            first_command = r.recognize_google(audio, language='en-in')
+            first_command = r.recognize_sphinx(audio, language='en')
             print("You said: ", first_command)
 
         except Exception as e:
