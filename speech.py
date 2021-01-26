@@ -3,10 +3,6 @@ import speech_recognition as sr
 
 def speak(audio):
     engine = pyttsx3.init()
-    # slow the rate
-    #engine.setProperty('rate', 180)
-    # getter method(gets the current value
-    # of engine property)
     voices = engine.getProperty('voices')
 
     # setter method .[0]=male voice and
@@ -15,8 +11,6 @@ def speak(audio):
 
     # set rate of voices
     engine.setProperty('rate', 145)
-
-   # Method for the speaking of the the assistant
     engine.say(audio)
 
     # Blocks while processing all the currently
@@ -26,7 +20,9 @@ def speak(audio):
 # this method is for taking the commands
 # and recognizing the command from the
 # speech_Recognition module we will use
-# the recongizer method for recognizing
+# the recognizer method for recognizing
+
+
 def takeCommand():
     r = sr.Recognizer()
 
@@ -49,7 +45,7 @@ def takeCommand():
         try:
             print("Recognizing. . .")
 
-            Query = r.recognize_sphinx(audio)
+            Query = r.recognize_google(audio)
             print("You said: ", Query)
 
         except Exception as e:
@@ -79,7 +75,7 @@ def takefirst():
         # it is good else we will have exception
         # handling
         try:
-            first_command = r.recognize_sphinx(audio, language='en')
+            first_command = r.recognize_google(audio)
             print("You said: ", first_command)
 
         except Exception as e:
