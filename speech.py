@@ -1,86 +1,36 @@
-import pyttsx3
 import speech_recognition as sr
+import subprocess
+from vosk import Model, KaldiRecognizer
+import pyaudio
+import time
+import json
 
 def speak(audio):
-    engine = pyttsx3.init()
-    voices = engine.getProperty('voices')
+    subprocess.run(["./mimic1/mimic", audio])
 
-    # setter method .[0]=male voice and
-    # [1]=female voice in set Property.
-    engine.setProperty('voice', voices[12].id)
+def listen():
+    p = pyaudio.PyAudio()
+    stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8000)
+    stream.start_stream()
 
-    # set rate of voices
-    engine.setProperty('rate', 145)
-    engine.say(audio)
+    model = Model("model")
+    rec = KaldiRecognizer(model, 16000)
 
-    # Blocks while processing all the currently
-    # queued commands
-    engine.runAndWait()
+    print("listening. . .")
 
-# this method is for taking the commands
-# and recognizing the command from the
-# speech_Recognition module we will use
-# the recognizer method for recognizing
+    time_duration = 3
+    time_start = time.time()
+
+    query = []
+    while time.time() < time_start + time_duration:
+        data = stream.read(2000, exception_on_overflow=False)
+        rec.AcceptWaveform(data)
+        result = rec.PartialResult()
+        words = json.loads(result)['partial']
+        query.append(words)
+
+    # remove spaces and get final result
+    query = query[-1]
+    return query
 
 
-def takeCommand():
-    r = sr.Recognizer()
-
-    # from the speech_Recognition module
-    # we will use the Microphone module
-    # for listening the command
-    with sr.Microphone() as source:
-        print('Listening. . .')
-
-        # seconds of non-speaking audio before
-        # a phrase is considered complete
-        r.pause_threshold = 0.8
-        r.adjust_for_ambient_noise(source)
-        audio = r.listen(source)
-
-        # Now we will be using the try and catch
-        # method so that if sound is recognized
-        # it is good else we will have exception
-        # handling
-        try:
-            print("Recognizing. . .")
-
-            Query = r.recognize_google(audio)
-            print("You said: ", Query)
-
-        except Exception as e:
-            print(e)
-            print("i am sorry I did not understand")
-            return "None"
-
-        return Query
-
-def takefirst():
-    r = sr.Recognizer()
-
-    # from the speech_Recognition module
-    # we will use the Microphone module
-    # for listening the command
-    with sr.Microphone() as source:
-        print('Listening. . .')
-
-        # seconds of non-speaking audio before
-        # a phrase is considered complete
-        r.pause_threshold = 0.8
-        r.adjust_for_ambient_noise(source)
-        audio = r.listen(source)
-
-        # Now we will be using the try and catch
-        # method so that if sound is recognized
-        # it is good else we will have exception
-        # handling
-        try:
-            first_command = r.recognize_google(audio)
-            print("You said: ", first_command)
-
-        except Exception as e:
-            print(e)
-            print("I am sorry I did not understand")
-            return "None"
-
-        return first_command

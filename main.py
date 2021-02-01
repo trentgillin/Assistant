@@ -17,7 +17,7 @@ def Take_query():
         # lower case so that most of the times
         # query matches and we get the perfect
         # output
-        query = takeCommand().lower()
+        query = listen().lower()
 
         if "what day is it" in query:
             tellDay()
@@ -43,8 +43,8 @@ if __name__ == '__main__':
 
     while (True):
 
-        first_command = takefirst().lower()
-        if "computer" in first_command:
+        first_command = listen().lower()
+        if "linus" in first_command:
             Take_query()
             continue
 
