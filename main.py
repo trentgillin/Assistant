@@ -5,13 +5,13 @@ from basic_commands import *
 from speech import *
 import time
 
-def Take_query():
 
-    # calling the Hello function
-    Hello()
+def take_query():
+
+    hello()
 
     # the program
-    while (True):
+    while True:
 
         # taking the query and making it into
         # lower case so that most of the times
@@ -20,11 +20,15 @@ def Take_query():
         query = listen().lower()
 
         if "what day is it" in query:
-            tellDay()
+            tell_day()
             continue
 
         elif "what time is it" in query:
-            tellTime()
+            tell_time()
+            continue
+
+        elif "what is todays date" in query:
+            tell_date()
             continue
 
         # this will exit and terminate the program
@@ -41,11 +45,11 @@ def Take_query():
 
 if __name__ == '__main__':
 
-    while (True):
+    while True:
 
         first_command = listen().lower()
         if "linus" in first_command:
-            Take_query()
+            take_query()
             continue
 
         elif "stop listening" in first_command:

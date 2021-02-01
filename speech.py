@@ -1,12 +1,13 @@
-import speech_recognition as sr
 import subprocess
 from vosk import Model, KaldiRecognizer
 import pyaudio
 import time
 import json
 
+
 def speak(audio):
     subprocess.run(["./mimic1/mimic", audio])
+
 
 def listen():
     p = pyaudio.PyAudio()

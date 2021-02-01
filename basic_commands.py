@@ -3,7 +3,7 @@ import datetime
 from speech import *
 
 
-def tellTime():
+def tell_time():
     time = str(datetime.datetime.now())
     print(time)
     hour = time[11:13]
@@ -11,12 +11,12 @@ def tellTime():
     speak("The time is" + hour + "Hours and" + min + "Minutes")
 
 
-def Hello():
-    print("Hello sir I am your desktop assistant. Tell me how may I help you")
-    speak("hello sir I am your desktop assistant. Tell me how may I help you")
+def hello():
+    print("Hello sir I am linus. Tell me how may I help you")
+    speak("hello sir I am linus. Tell me how may I help you")
 
 
-def tellDay():
+def tell_day():
     # This function is for telling the
     # day of the week
     day = datetime.datetime.today().weekday() + 1
@@ -32,3 +32,10 @@ def tellDay():
         day_of_the_week = Day_dict[day]
         print(day_of_the_week)
         speak("The day is " + day_of_the_week)
+
+
+def tell_date():
+    date = datetime.datetime.now()
+    date = date.strftime("%B %d %Y")
+    speak("The date is " + date)
+
