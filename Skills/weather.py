@@ -4,6 +4,7 @@
 import requests
 import json
 from Skills.secrets import api_key
+import geocoder
 
 # class for weather forecast
 class WeatherReport:
@@ -12,10 +13,27 @@ class WeatherReport:
 
     # method to get lat on logitude of city
     def geocode(self):
-        url = "http://api.openweathermap.org/geo/1.0/direct?q="+self.city+"&limit=5&appid="+api_key
-        result_geo = requests.get(url)
-        lat_lon = json.dumps(result_geo.json(), sort_keys=True, indent=4)
-        print(lat_lon)
+        g = geocoder.osm(self.city)
+        lat_long = g.latlng
+        return(lat_long)
+
+    # function to get current weather
+    def get_weather(self):
+        url = "https://api.openweathermap.org/data/2.5/onecall?lat="+str(self.lat_long[0])+"&lon="+str(self.lat_long[1])+"&exclude=hourly&appid=" + api_key + "&units=imperial"
+        result = requests.get(url)
+        weather = json.loads(result.text)
+        current_weather = weather['current']
+        current_temp = current_weather['temp']
+        current_feelslike = current_weather['feels_like']
+        sky_conditions = current_weather['weather'][0]['description']
+
+        weather_report = {
+            "temp": current_temp,
+            "feels_like": current_feelslike,
+            "sky": sky_conditions
+        }
+
+        return weather_report
 
 
 

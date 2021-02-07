@@ -4,32 +4,53 @@
 from basic_commands import *
 from speech import *
 import time
+from Skills.weather import *
+from vosk import Model
 
-
-def take_query():
-
-    hello()
+def take_query(model_loaded, q):
 
     # the program
     while True:
-
+        time.sleep(2)
         # taking the query and making it into
         # lower case so that most of the times
         # query matches and we get the perfect
         # output
-        query = listen().lower()
+        #query = listen(model_loaded).lower()
+        query = q
 
         if "what day is it" in query:
             tell_day()
-            continue
+            break
 
         elif "what time is it" in query:
             tell_time()
-            continue
+            break
 
-        elif "what is todays date" in query:
+        elif "what is the date" in query:
             tell_date()
-            continue
+            break
+
+        elif "what's the weather" in query:
+            # get city from request
+            user_city = query.split()
+            user_city = user_city[-2:]
+            user_city = " ".join(user_city)
+
+            # build report
+            r = WeatherReport(user_city)
+            r.lat_long = r.geocode()
+            r.weather_results = r.get_weather()
+
+            # speak report
+            print("currently in " + user_city + " the weather is " + str(r.weather_results['temp']) + " degrees farenheit "
+                                                                                                   "and feels like " + str(
+                r.weather_results['feels_like']) + " with " + str(r.weather_results['sky']))
+
+            speak("currently in " + user_city + " the weather is " + str(r.weather_results['temp']) + " degrees farenheit "
+                                                                                                   "and feels like " + str(
+                r.weather_results['feels_like']) + " with " + str(r.weather_results['sky']))
+            break
 
         # this will exit and terminate the program
         elif "goodbye" in query:
@@ -39,17 +60,19 @@ def take_query():
 
         # catch all if does not know command
         else:
-            print("I am sorry I do not know how to do that, maybe I need an upgrade?")
-            speak("I am sorry I do not know how to do that, maybe I need an upgrade")
+            break
 
 
 if __name__ == '__main__':
 
     while True:
-
-        first_command = listen().lower()
-        if "linus" in first_command:
-            take_query()
+        model_loaded = Model("model")
+        first_command = listen(model_loaded).lower()
+        first_command = first_command.split()
+        address = first_command.pop(0)
+        if "linus" in address:
+            q = " ".join(first_command)
+            take_query(model_loaded, q)
             continue
 
         elif "stop listening" in first_command:

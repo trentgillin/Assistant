@@ -9,12 +9,13 @@ def speak(audio):
     subprocess.run(["./mimic1/mimic", audio])
 
 
-def listen():
+def listen(model_loaded):
     p = pyaudio.PyAudio()
     stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8000)
     stream.start_stream()
 
-    model = Model("model")
+    #model = Model("model")
+    model = model_loaded
     rec = KaldiRecognizer(model, 16000)
 
     print("listening. . .")
