@@ -20,7 +20,7 @@ def listen(model_loaded):
 
     print("listening. . .")
 
-    time_duration = 3
+    time_duration = 8
     time_start = time.time()
 
     query = []

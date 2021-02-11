@@ -3,7 +3,7 @@
 # modules
 import requests
 import json
-from Skills.secrets import api_key
+from Skills.secrets import weather_api_key
 import geocoder
 
 # class for weather forecast
@@ -19,7 +19,7 @@ class WeatherReport:
 
     # function to get current weather
     def get_weather(self):
-        url = "https://api.openweathermap.org/data/2.5/onecall?lat="+str(self.lat_long[0])+"&lon="+str(self.lat_long[1])+"&exclude=hourly&appid=" + api_key + "&units=imperial"
+        url = "https://api.openweathermap.org/data/2.5/onecall?lat="+str(self.lat_long[0])+"&lon="+str(self.lat_long[1])+"&exclude=hourly&appid="+weather_api_key+"&units=imperial"
         result = requests.get(url)
         weather = json.loads(result.text)
         current_weather = weather['current']

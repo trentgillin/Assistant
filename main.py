@@ -58,6 +58,10 @@ def take_query(model_loaded, q):
             speak("Goodbye, speak with you soon")
             break
 
+        elif "hello" in query:
+            hello()
+            break
+
         # catch all if does not know command
         else:
             break
@@ -69,9 +73,14 @@ if __name__ == '__main__':
         model_loaded = Model("model")
         first_command = listen(model_loaded).lower()
         first_command = first_command.split()
-        address = first_command.pop(0)
+        if not first_command:
+            print("Awaiting commands")
+            continue
+        else:
+            address = first_command.pop(0)
         if "linus" in address:
             q = " ".join(first_command)
+            print("You said: "+q)
             take_query(model_loaded, q)
             continue
 
