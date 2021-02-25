@@ -1,0 +1,1 @@
+greetings = ["hello", "good morning", "good afternoon", "good night"]

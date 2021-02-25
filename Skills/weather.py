@@ -5,6 +5,7 @@ import requests
 import json
 from Skills.secrets import weather_api_key
 import geocoder
+from speech import *
 
 # class for weather forecast
 class WeatherReport:
@@ -34,6 +35,16 @@ class WeatherReport:
         }
 
         return weather_report
+
+    def speak_weather(self):
+        # speak report
+        print("currently in " + self.city + " the weather is " + str(self.weather_results['temp']) + " degrees farenheit "
+                                                                                                  "and feels like " + str(
+            self.weather_results['feels_like']) + " with " + str(self.weather_results['sky']))
+
+        speak("currently in " + self.city + " the weather is " + str(self.weather_results['temp']) + " degrees farenheit "
+                                                                                                  "and feels like " + str(
+            self.weather_results['feels_like']) + " with " + str(self.weather_results['sky']))
 
 
 

@@ -11,9 +11,13 @@ def tell_time():
     speak("The time is" + hour + "Hours and" + min + "Minutes")
 
 
-def hello():
-    print("Hello sir I am linus. Tell me how may I help you")
-    speak("hello sir I am linus. Tell me how may I help you")
+def hello(q):
+    if "hello" in q:
+        print("Hello sir, I am linus. Tell me how may I help you")
+        speak("hello sir I am linus. Tell me how may I help you")
+    else:
+        print(q+" sir, how may I be of service today")
+        speak(str(q)+" sir how may i be of service today")
 
 
 def tell_day():

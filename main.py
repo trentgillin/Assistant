@@ -2,10 +2,9 @@
 
 # modules
 from basic_commands import *
-from speech import *
-import time
 from Skills.weather import *
 from vosk import Model
+from Skills.query_types import *
 
 def take_query(model_loaded, q):
 
@@ -37,19 +36,15 @@ def take_query(model_loaded, q):
             user_city = user_city[-2:]
             user_city = " ".join(user_city)
 
+            print("Getting weather for "+user_city+" . . .")
+            speak("getting weather for "+user_city)
+
             # build report
             r = WeatherReport(user_city)
             r.lat_long = r.geocode()
             r.weather_results = r.get_weather()
-
-            # speak report
-            print("currently in " + user_city + " the weather is " + str(r.weather_results['temp']) + " degrees farenheit "
-                                                                                                   "and feels like " + str(
-                r.weather_results['feels_like']) + " with " + str(r.weather_results['sky']))
-
-            speak("currently in " + user_city + " the weather is " + str(r.weather_results['temp']) + " degrees farenheit "
-                                                                                                   "and feels like " + str(
-                r.weather_results['feels_like']) + " with " + str(r.weather_results['sky']))
+            # speak weather
+            r.speak_weather()
             break
 
         # this will exit and terminate the program
@@ -58,12 +53,14 @@ def take_query(model_loaded, q):
             speak("Goodbye, speak with you soon")
             break
 
-        elif "hello" in query:
-            hello()
+        elif query in greetings:
+            hello(query)
             break
 
         # catch all if does not know command
         else:
+            print("Im not sure how to do that")
+            speak("im not sure how to do that")
             break
 
 
