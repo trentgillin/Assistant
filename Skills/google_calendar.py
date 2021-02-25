@@ -51,8 +51,12 @@ def get_events():
     event_time = event_output.Start[0][11:13]
     event_time = int(event_time)
     event_time = event_time - 12
-    print("You have "+ str(events_length)+" in the next 24 hours")
-    speak("You have " + str(events_length) + " in the next 24 hours")
+    if events_length < 2:
+        print("You have " + str(events_length)+" event in the next 24 hours")
+        speak("You have " + str(events_length) + " event in the next 24 hours")
+    else:
+        print("You have " + str(events_length) + " events in the next 24 hours")
+        speak("You have " + str(events_length) + " events in the next 24 hours")
     print("Your next event is "+str(event_output.Event[0])+" at "+str(event_time)+" o'clock")
     speak("Your next event is " + str(event_output.Event[0]) + " at " + str(event_time) + "o clock")
 
