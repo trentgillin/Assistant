@@ -3,6 +3,7 @@
 # modules
 from basic_commands import *
 from Skills.weather import *
+from Skills.google_calendar import *
 from vosk import Model
 from Skills.query_types import *
 
@@ -55,6 +56,10 @@ def take_query(model_loaded, q):
 
         elif query in greetings:
             hello(query)
+            break
+
+        elif query in event_queries:
+            get_events()
             break
 
         # catch all if does not know command
