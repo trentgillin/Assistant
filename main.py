@@ -7,16 +7,10 @@ from Skills.google_calendar import *
 from vosk import Model
 from Skills.query_types import *
 
-def take_query(model_loaded, q):
+def take_query(q):
 
     # the program
     while True:
-        time.sleep(2)
-        # taking the query and making it into
-        # lower case so that most of the times
-        # query matches and we get the perfect
-        # output
-        #query = listen(model_loaded).lower()
         query = q
 
         if "what day is it" in query:
@@ -62,6 +56,10 @@ def take_query(model_loaded, q):
             get_events()
             break
 
+        elif "what is your name" in query:
+            print("I am linus, your personal assistant")
+            speak("I am linus your personal assistant")
+
         # catch all if does not know command
         else:
             print("Im not sure how to do that")
@@ -71,19 +69,22 @@ def take_query(model_loaded, q):
 
 if __name__ == '__main__':
 
+    model_loaded = Model("model")
     while True:
-        model_loaded = Model("model")
         first_command = listen(model_loaded).lower()
-        first_command = first_command.split()
+        #first_command = first_command.split()
         if not first_command:
             print("Awaiting commands")
             continue
         else:
-            address = first_command.pop(0)
+            #address = first_command.pop(0)
+            address = first_command
         if "linus" in address:
-            q = " ".join(first_command)
+            print("Yes")
+            speak("yes ")
+            q = listen(model_loaded).lower()
             print("You said: "+q)
-            take_query(model_loaded, q)
+            take_query(q)
             continue
 
         elif "stop listening" in first_command:

@@ -5,19 +5,25 @@ from speech import *
 
 def tell_time():
     time = str(datetime.datetime.now())
-    print(time)
     hour = time[11:13]
     min = time[14:16]
-    speak("The time is" + hour + "Hours and" + min + "Minutes")
+    hour_st = int(hour) - 12
+    hour_st = str(hour_st)
+    if int(hour) > 12:
+        print(hour_st + ":" + min+" PM")
+        speak("The time is" + hour_st + min + "PM")
+    else:
+        speak("Time time is" + hour_st + min + "AM")
+        print(hour_st + ":" + min + " AM")
 
 
 def hello(q):
     if "hello" in q:
-        print("Hello sir, I am linus. Tell me how may I help you")
-        speak("hello sir I am linus. Tell me how may I help you")
+        print("Hello, I am linus your personal assistant. Tell me how may I help you")
+        speak("hello I am linus your personal assistant. Tell me how may I help you")
     else:
-        print(q+" sir, how may I be of service today")
-        speak(str(q)+" sir how may i be of service today")
+        print(q+", how may I be of service today")
+        speak(str(q)+" how may i be of service today")
 
 
 def tell_day():
