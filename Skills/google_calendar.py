@@ -34,29 +34,31 @@ def get_events():
     if not events:
         print("You have no upcoming events")
         speak("you have no upcoming events")
-    for event in events:
-        start = event['start'].get('dateTime', event['start'].get('date'))
-        end = event['end'].get('dateTime', event['end'].get('date'))
-        result = [event['summary'],
-                  start,
-                  end,
-                  event['id']]
-        event_output.append(result)
 
-    event_output = pd.DataFrame.from_records(event_output)
-    event_output.columns = ['Event', 'Start', 'End', 'ID']
-    # get number of events
-    events_length = len(event_output.index)
-    # get time of first event
-    event_time = event_output.Start[0][11:13]
-    event_time = int(event_time)
-    event_time = event_time - 12
-    if events_length < 2:
-        print("You have " + str(events_length)+" event in the next 24 hours")
-        speak("You have " + str(events_length) + " event in the next 24 hours")
     else:
-        print("You have " + str(events_length) + " events in the next 24 hours")
-        speak("You have " + str(events_length) + " events in the next 24 hours")
-    print("Your next event is "+str(event_output.Event[0])+" at "+str(event_time)+" o'clock")
-    speak("Your next event is " + str(event_output.Event[0]) + " at " + str(event_time) + "o clock")
+        for event in events:
+            start = event['start'].get('dateTime', event['start'].get('date'))
+            end = event['end'].get('dateTime', event['end'].get('date'))
+            result = [event['summary'],
+                      start,
+                      end,
+                      event['id']]
+            event_output.append(result)
+
+        event_output = pd.DataFrame.from_records(event_output)
+        event_output.columns = ['Event', 'Start', 'End', 'ID']
+        # get number of events
+        events_length = len(event_output.index)
+        # get time of first event
+        event_time = event_output.Start[0][11:13]
+        event_time = int(event_time)
+        event_time = event_time - 12
+        if events_length < 2:
+            print("You have " + str(events_length)+" event in the next 24 hours")
+            speak("You have " + str(events_length) + " event in the next 24 hours")
+        else:
+            print("You have " + str(events_length) + " events in the next 24 hours")
+            speak("You have " + str(events_length) + " events in the next 24 hours")
+        print("Your next event is "+str(event_output.Event[0])+" at "+str(event_time)+" o'clock")
+        speak("Your next event is " + str(event_output.Event[0]) + " at " + str(event_time) + "o clock")
 

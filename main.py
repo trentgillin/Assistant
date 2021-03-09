@@ -59,6 +59,12 @@ def take_query(q):
         elif "what is your name" in query:
             print("I am linus, your personal assistant")
             speak("I am linus your personal assistant")
+            break
+
+        elif "what is your favorite color" in query:
+            print("I like them all but I am partial to monochromatic wavelengths")
+            speak("I like them all but I am partial to monochromatic wavelengths")
+            break
 
         # catch all if does not know command
         else:
