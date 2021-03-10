@@ -37,7 +37,11 @@ def take_query(q):
             # build report
             r = WeatherReport(user_city)
             r.lat_long = r.geocode()
-            r.weather_results = r.get_weather()
+            try:
+                r.weather_results = r.get_weather()
+            except:
+                print("I seem to be having trouble, try again later")
+                speak("I seem to be having trouble try again later")
             # speak weather
             r.speak_weather()
             break
