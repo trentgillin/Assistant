@@ -7,6 +7,7 @@ from Skills.google_calendar import *
 from vosk import Model
 from Skills.query_types import *
 
+
 def take_query(q):
 
     # the program
@@ -25,7 +26,7 @@ def take_query(q):
             tell_date()
             break
 
-        elif "what's the weather" in query:
+        elif "weather" in query:
             # get city from request
             user_city = query.split()
             user_city = user_city[-2:]
@@ -79,7 +80,7 @@ def take_query(q):
 
 if __name__ == '__main__':
 
-    model_loaded = Model("model")
+    model_loaded = Model("/home/trent/Projects/Assistant/model")
     while True:
         first_command = listen(model_loaded).lower()
         #first_command = first_command.split()
@@ -91,7 +92,7 @@ if __name__ == '__main__':
             address = first_command
         if "linus" in address:
             print("Yes")
-            speak("yes ")
+            speak("yes")
             q = listen(model_loaded).lower()
             print("You said: "+q)
             take_query(q)
