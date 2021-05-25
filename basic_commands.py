@@ -7,13 +7,13 @@ def tell_time():
     time = str(datetime.datetime.now())
     hour = time[11:13]
     min = time[14:16]
-    hour_st = int(hour) - 12
-    hour_st = str(hour_st)
+    hour_st = str(hour)
     if int(hour) > 12:
+        hour_st = int(hour) - 12
         print(hour_st + ":" + min+" PM")
         speak("The time is" + hour_st + min + "PM")
     else:
-        speak("Time time is" + hour_st + min + "AM")
+        speak("The time is" + hour_st + min + "AM")
         print(hour_st + ":" + min + " AM")
 
 

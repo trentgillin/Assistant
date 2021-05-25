@@ -92,7 +92,7 @@ if __name__ == '__main__':
             address = first_command
         if "linus" in address:
             print("Yes")
-            speak("yes")
+            speak("yes ")
             q = listen(model_loaded).lower()
             print("You said: "+q)
             take_query(q)
