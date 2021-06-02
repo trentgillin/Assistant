@@ -1,6 +1,9 @@
 
 import datetime
 from speech import *
+from Skills.secrets import wolfram_alpha
+import wolframalpha
+import re
 
 
 def tell_time():
@@ -10,6 +13,7 @@ def tell_time():
     hour_st = str(hour)
     if int(hour) > 12:
         hour_st = int(hour) - 12
+        hour_st = str(hour_st)
         print(hour_st + ":" + min+" PM")
         speak("The time is" + hour_st + min + "PM")
     else:
@@ -48,4 +52,29 @@ def tell_date():
     date = datetime.datetime.now()
     date = date.strftime("%B %d %Y")
     speak("The date is " + date)
+
+def query_wolframalpha(q):
+    client = wolframalpha.Client(wolfram_alpha)
+    print("I will look that up")
+    speak("i will look that up")
+    verb = q.split(' ', 3)[2]
+    q = q.split(' ', 3)[3]
+    res = client.query(q)
+    answer = next(res.results).text
+    answer = q + ' ' + verb + ' ' + answer
+    print(answer)
+    speak(answer)
+
+def shut_down():
+    print("Please verify shutdown by offering security clearance")
+    speak("please verify shutdown by offering security clearance")
+    clearance = listen()
+    if clearance in pass_codes:
+        print("Shutting down, talk to you later")
+        speak("shutting down talk to you later")
+        os.system("shutdown")
+    else:
+        print("That is incorrect, shutdown aborted")
+        speak("That is incorrect, shutdown aborted")
+
 

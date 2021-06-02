@@ -33,6 +33,9 @@ def listen(model_loaded):
 
     # remove spaces and get final result
     query = query[-1]
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
     return query
 
 

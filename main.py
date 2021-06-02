@@ -6,6 +6,7 @@ from Skills.weather import *
 from Skills.google_calendar import *
 from vosk import Model
 from Skills.query_types import *
+import os
 
 
 def take_query(q):
@@ -71,6 +72,18 @@ def take_query(q):
             speak("I like them all but I am partial to monochromatic wavelengths")
             break
 
+        elif query in ["create event", "add event"]:
+            create_event()
+            break
+
+        elif "query" in query:
+            query_wolframalpha(query)
+            break
+
+        elif query in ["shutdown", "turn off computer"]:
+            shut_down()
+            break
+
         # catch all if does not know command
         else:
             print("Im not sure how to do that")
@@ -85,6 +98,7 @@ if __name__ == '__main__':
         first_command = listen(model_loaded).lower()
         #first_command = first_command.split()
         if not first_command:
+            model_loaded = Model("/home/trent/Projects/Assistant/model")
             print("Awaiting commands")
             continue
         else:
@@ -105,8 +119,6 @@ if __name__ == '__main__':
             print("Awaiting commands")
             time.sleep(2)
             continue
-
-
 
 
 
