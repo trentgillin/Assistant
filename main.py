@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # Main script for assistant, sets up engine and determines what commands to execute based off of input
 
 # modules
@@ -102,7 +103,6 @@ if __name__ == '__main__':
             print("Awaiting commands")
             continue
         else:
-            #address = first_command.pop(0)
             address = first_command
         if "linus" in address:
             print("Yes")
