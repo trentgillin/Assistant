@@ -1,13 +1,15 @@
-import subprocess
 from vosk import Model, KaldiRecognizer
 import pyaudio
 import time
 import json
-
+import pyttsx3
 
 def speak(audio):
-    subprocess.run(["./mimic1/mimic", audio])
-
+    engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[2].id)
+    engine.say(audio)
+    engine.runAndWait()
 
 def listen(model_loaded):
     p = pyaudio.PyAudio()

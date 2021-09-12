@@ -8,6 +8,7 @@ from Skills.google_calendar import *
 from vosk import Model
 from Skills.query_types import *
 import os
+from speech import *
 
 
 def take_query(q):
@@ -93,18 +94,18 @@ def take_query(q):
 
 
 if __name__ == '__main__':
-
-    model_loaded = Model("/home/trent/Projects/Assistant/model")
+    model_loaded = os.path.abspath('model')
     while True:
         first_command = listen(model_loaded).lower()
         #first_command = first_command.split()
         if not first_command:
-            model_loaded = Model("/home/trent/Projects/Assistant/model")
+            model_loaded = os.path.abspath('model')
             print("Awaiting commands")
             continue
         else:
             address = first_command
         if "linus" in address:
+
             print("Yes")
             speak("yes ")
             q = listen(model_loaded).lower()
