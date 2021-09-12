@@ -22,9 +22,10 @@ def tell_time():
 
 
 def hello(q):
-    if "hello" in q:
-        print("Hello, I am linus your personal assistant. Tell me how may I help you")
-        speak("hello I am linus your personal assistant. Tell me how may I help you")
+    if "hello" in q or "hi" in q:
+        response = random.choice(greeting_response)
+        print(response)
+        speak(response)
     else:
         print(q+", how may I be of service today")
         speak(str(q)+" how may i be of service today")
