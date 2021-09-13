@@ -16,8 +16,7 @@ def listen(model_loaded):
     stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8000)
     stream.start_stream()
 
-    #model = Model("model")
-    model = model_loaded
+    model = Model(model_loaded)
     rec = KaldiRecognizer(model, 16000)
 
     print("listening. . .")
@@ -39,5 +38,3 @@ def listen(model_loaded):
     stream.close()
     p.terminate()
     return query
-
-

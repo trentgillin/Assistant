@@ -4,6 +4,8 @@ from speech import *
 from Skills.secrets import wolfram_alpha
 import wolframalpha
 import re
+import random
+from Skills.responses import *
 
 
 def tell_time():
@@ -23,7 +25,7 @@ def tell_time():
 
 def hello(q):
     if "hello" in q or "hi" in q:
-        response = random.choice(greeting_response)
+        response = random.choice(greeting_responses)
         print(response)
         speak(response)
     else:

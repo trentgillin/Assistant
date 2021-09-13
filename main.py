@@ -7,7 +7,6 @@ from Skills.weather import *
 from Skills.google_calendar import *
 from vosk import Model
 from Skills.query_types import *
-import Skills.responses
 import os
 from speech import *
 
@@ -79,7 +78,7 @@ def take_query(q):
             create_event()
             break
 
-        elif "query" in query:
+        elif "cam you look up" in query:
             query_wolframalpha(query)
             break
 
