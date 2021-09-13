@@ -1,0 +1,1 @@
+greeting_responses = ["hello, I am linus your personal assistant, how may I help you?", "hi, I hope you are having a great day", "good day"]

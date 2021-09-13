@@ -54,7 +54,7 @@ def get_events():
         event_time = int(event_time)
         event_time = event_time - 12
         if events_length < 2:
-            print("You have " + str(events_length)+" event in the next 24 hours")
+            print("You have " + str(events_length) +" event in the next 24 hours")
             speak("You have " + str(events_length) + " event in the next 24 hours")
         else:
             print("You have " + str(events_length) + " events in the next 24 hours")
