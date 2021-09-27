@@ -10,6 +10,8 @@ from Skills.query_types import *
 import os
 from speech import *
 
+# for now set working directory
+
 
 def take_query(q):
 
