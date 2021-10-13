@@ -10,9 +10,6 @@ from Skills.query_types import *
 import os
 from speech import *
 
-# for now set working directory
-
-
 def take_query(q):
 
     # the program
@@ -80,7 +77,7 @@ def take_query(q):
             create_event()
             break
 
-        elif "cam you look up" in query:
+        elif "look up" in query:
             query_wolframalpha(query)
             break
 
@@ -98,24 +95,13 @@ def take_query(q):
 if __name__ == '__main__':
     model_loaded = os.path.abspath('model')
     while True:
-        first_command = listen(model_loaded).lower()
-        #first_command = first_command.split()
-        if not first_command:
-            model_loaded = os.path.abspath('model')
-            print("Awaiting commands")
-            continue
-        else:
-            address = first_command
-        if "linus" in address:
-
-            print("Yes")
-            speak("yes ")
-            q = listen(model_loaded).lower()
+        q = listen(model_loaded).lower()
+        if "linus" in q:
             print("You said: "+q)
             take_query(q)
             continue
 
-        elif "stop listening" in first_command:
+        elif "stop listening" in q:
             exit()
 
         else:
