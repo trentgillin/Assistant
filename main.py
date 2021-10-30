@@ -116,6 +116,7 @@ if __name__ == '__main__':
 
         else:
             print("Awaiting commands")
+            Reminder.check_reminder()
             time.sleep(2)
             continue
 

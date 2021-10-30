@@ -77,9 +77,10 @@ class Reminder:
         new_reminder = {self.future_time:self.subject}
         new_reminder = pd.DataFrame.from_dict(new_reminder, orient='index')
         new_reminder['time'] = new_reminder.index
+        new_reminder.columns = ['subject', 'time']
         tog = [reminders, new_reminder]
         tog = pd.concat(tog)
-        tog.to_csv('memory/reminders.csv')
+        tog.to_csv('memory/reminders.csv', index=False)
 
     def check_reminder():
         reminders = pd.read_csv("memory/reminders.csv")
