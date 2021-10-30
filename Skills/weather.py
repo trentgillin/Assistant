@@ -25,7 +25,9 @@ class WeatherReport:
         weather = json.loads(result.text)
         current_weather = weather['current']
         current_temp = current_weather['temp']
+        current_temp = round(current_temp)
         current_feelslike = current_weather['feels_like']
+        current_feelslike = round(current_feelslike)
         sky_conditions = current_weather['weather'][0]['description']
 
         weather_report = {
