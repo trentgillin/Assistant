@@ -7,6 +7,7 @@ from Skills.weather import *
 from Skills.google_calendar import *
 from vosk import Model
 from Skills.query_types import *
+from Skills.reminder import *
 import os
 from speech import *
 
@@ -26,6 +27,13 @@ def take_query(q):
 
         elif "what is the date" in query:
             tell_date()
+            break
+
+        elif "set reminder" in query:
+            subj = query.split('reminder ').pop(1)
+            new_one = Reminder(subj)
+            new_one.set_time()
+            new_one.save_reminder()
             break
 
         elif "weather" in query:
@@ -74,7 +82,9 @@ def take_query(q):
             break
 
         elif query in ["create event", "add event"]:
-            create_event()
+            #create_event()
+            print("This is still a work in progress, check back later")
+            speak("This is still a work in progress, check back later")
             break
 
         elif "look up" in query:
