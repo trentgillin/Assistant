@@ -1,7 +1,5 @@
-#!/usr/bin/python3
-# Main script for assistant, sets up engine and determines what commands to execute based off of input
-
 # modules
+from flask import Flask, render_template, request
 from basic_commands import *
 from Skills.weather import *
 from Skills.google_calendar import *
@@ -72,8 +70,8 @@ def take_query(q):
             break
 
         elif "what is your name" in query:
-            print("I am linus, your personal assistant")
-            speak("I am linus your personal assistant")
+            response = "I am linus, your personal assistant"
+            #speak("I am linus your personal assistant")
             break
 
         elif "what is your favorite color" in query:
@@ -100,27 +98,23 @@ def take_query(q):
             print("Im not sure how to do that")
             speak("im not sure how to do that")
             break
+        
+    return response
 
+
+
+model_loaded = os.path.abspath('model')
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template("home.html")
+@app.route("/get")
+def get_linus_response():
+    userText = request.args.get('msg')
+    return take_query(userText)
 
 if __name__ == '__main__':
-    model_loaded = os.path.abspath('model')
-    while True:
-        q = listen(model_loaded).lower()
-        if "linus" in q:
-            print("You said: "+q)
-            take_query(q)
-            continue
-
-        elif "stop listening" in q:
-            exit()
-
-        else:
-            print("Awaiting commands")
-            #Reminder.check_reminder()
-            time.sleep(2)
-            continue
-
-
-
+    app.run(host="0.0.0.0")
 
 
