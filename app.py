@@ -1,4 +1,5 @@
 # modules
+from types import resolve_bases
 from flask import Flask, render_template, request
 from basic_commands import *
 from Skills.weather import *
@@ -16,15 +17,15 @@ def take_query(q):
         query = q
 
         if "what day is it" in query:
-            tell_day()
+            response = tell_day()
             break
 
         elif "what time is it" in query:
-            tell_time()
+            response = tell_time()
             break
 
         elif "what is the date" in query:
-            tell_date()
+            response = tell_date()
             break
 
         elif "set reminder" in query:
@@ -57,16 +58,16 @@ def take_query(q):
 
         # this will exit and terminate the program
         elif "goodbye" in query:
-            print("Goodbye, speak with you soon!")
+            response = "Goodbye, speak with you soon!"
             speak("Goodbye, speak with you soon")
             break
 
         elif query in greetings:
-            hello(query)
+            response = hello(query)
             break
 
         elif query in event_queries:
-            get_events()
+            response = get_events()
             break
 
         elif "what is your name" in query:
@@ -75,18 +76,18 @@ def take_query(q):
             break
 
         elif "what is your favorite color" in query:
-            print("I like them all but I am partial to monochromatic wavelengths")
+            response = "I like them all but I am partial to monochromatic wavelengths"
             speak("I like them all but I am partial to monochromatic wavelengths")
             break
 
         elif query in ["create event", "add event"]:
             #create_event()
-            print("This is still a work in progress, check back later")
+            response = "This is still a work in progress, check back later"
             speak("This is still a work in progress, check back later")
             break
 
         elif "look up" in query:
-            query_wolframalpha(query)
+            response = query_wolframalpha(query)
             break
 
         elif query in ["shutdown", "turn off computer"]:
@@ -95,7 +96,7 @@ def take_query(q):
 
         # catch all if does not know command
         else:
-            print("Im not sure how to do that")
+            response = "Im not sure how to do that"
             speak("im not sure how to do that")
             break
         
