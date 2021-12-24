@@ -1,2 +1,2 @@
-greetings = ["hello", "good morning", "good afternoon"]
-event_queries = ["do i have any upcoming events", "what is on the schedule for today", "is there anything on my calendar"]
+greetings = ["linus hello", "linus good morning", "linus good afternoon"]
+event_queries = ["linus do i have any upcoming events", "linus what is on the schedule for today", "linus is there anything on my calendar"]
