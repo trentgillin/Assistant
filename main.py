@@ -30,10 +30,12 @@ def take_query(q):
             break
 
         elif "set reminder" in query:
-            subj = query.split('reminder ').pop(1)
-            new_one = Reminder(subj)
-            new_one.set_time()
-            new_one.save_reminder()
+            print("I am sorry, I am still learning how to do this try again later")
+            speak("I am sorry, I am still learning how to do this try again later")
+            #subj = query.split('reminder ').pop(1)
+            #new_one = Reminder(subj)
+            #new_one.set_time()
+            #new_one.save_reminder()
             break
 
         elif "weather" in query:
