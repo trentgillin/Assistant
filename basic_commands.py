@@ -54,6 +54,7 @@ def tell_day():
 def tell_date():
     date = datetime.datetime.now()
     date = date.strftime("%B %d %Y")
+    print("The date is "+ date)
     speak("The date is " + date)
 
 def query_wolframalpha(q):

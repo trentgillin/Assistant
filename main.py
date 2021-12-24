@@ -25,7 +25,7 @@ def take_query(q):
             tell_time()
             break
 
-        elif "what is the date" in query:
+        elif "what is today's date" in query:
             tell_date()
             break
 
