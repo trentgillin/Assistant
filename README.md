@@ -1,3 +1,5 @@
+![](images/robot.png)
+
 # Assistant
 Personal assistant project
 
