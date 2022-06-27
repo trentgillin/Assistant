@@ -41,25 +41,21 @@ def take_query(q):
             user_city = user_city[-2:]
             user_city = " ".join(user_city)
 
-            print("Getting weather for "+user_city+" . . .")
-            speak("getting weather for "+user_city)
-
             # build report
             r = WeatherReport(user_city)
             r.lat_long = r.geocode()
             try:
                 r.weather_results = r.get_weather()
             except:
-                print("I seem to be having trouble, try again later")
-                speak("I seem to be having trouble try again later")
+                result = "I seem to be having trouble, try again later"
             # speak weather
-            r.speak_weather()
+            result = r.type_weather()
+            response = result
             break
 
         # this will exit and terminate the program
         elif "goodbye" in query:
-            response = "Goodbye, speak with you soon!"
-            speak("Goodbye, speak with you soon")
+            response = "Goodbye, chat with you soon!"
             break
 
         elif query in greetings:
@@ -76,13 +72,11 @@ def take_query(q):
 
         elif "what is your favorite color" in query:
             response = "I like them all but I am partial to monochromatic wavelengths"
-            speak("I like them all but I am partial to monochromatic wavelengths")
             break
 
         elif query in ["create event", "add event"]:
             #create_event()
             response = "This is still a work in progress, check back later"
-            speak("This is still a work in progress, check back later")
             break
 
         elif "look up" in query:
@@ -96,7 +90,6 @@ def take_query(q):
         # catch all if does not know command
         else:
             response = "Im not sure how to do that"
-            speak("im not sure how to do that")
             break
         
     return response

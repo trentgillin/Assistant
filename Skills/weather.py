@@ -48,5 +48,9 @@ class WeatherReport:
                                                                                                   "and feels like " + str(
             self.weather_results['feels_like']) + " with " + str(self.weather_results['sky']))
 
-
-
+    def type_weather(self):
+        # speak report
+        r = ("Currently in " + self.city + " the weather is " + str(self.weather_results['temp']) + " degrees farenheit "
+                                                                                                  "and feels like " + str(
+            self.weather_results['feels_like']) + " with " + str(self.weather_results['sky']))
+        return r
