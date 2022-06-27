@@ -17,7 +17,7 @@ def take_query(q):
         query = q
 
         if "what day is it" in query:
-            response = tell_day(typed = False)
+            response = tell_day(typed = True)
             break
 
         elif "what time is it" in query:
@@ -72,7 +72,6 @@ def take_query(q):
 
         elif "what is your name" in query:
             response = "I am linus, your personal assistant"
-            #speak("I am linus your personal assistant")
             break
 
         elif "what is your favorite color" in query:
