@@ -17,14 +17,14 @@ def take_query(q):
         query = q
 
         if "what day is it" in query:
-            response = tell_day()
+            response = tell_day(typed = False)
             break
 
         elif "what time is it" in query:
             response = tell_time()
             break
 
-        elif "what is the date" in query:
+        elif "What is the date" in query:
             response = tell_date()
             break
 
