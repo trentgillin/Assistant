@@ -60,17 +60,25 @@ def tell_date():
     print("The date is "+ date)
     speak("The date is " + date)
 
-def query_wolframalpha(q):
+def query_wolframalpha(q, typed = False):
     client = wolframalpha.Client(wolfram_alpha)
-    print("I will look that up")
-    speak("i will look that up")
-    verb = q.split(' ', 3)[2]
-    q = q.split(' ', 3)[3]
-    res = client.query(q)
-    answer = next(res.results).text
-    answer = q + ' ' + verb + ' ' + answer
-    print(answer)
-    speak(answer)
+    if type == False: 
+        print("I will look that up")
+        speak("i will look that up")
+        verb = q.split(' ', 3)[2]
+        q = q.split(' ', 3)[3]
+        res = client.query(q)
+        answer = next(res.results).text
+        answer = q + ' ' + verb + ' ' + answer
+        print(answer)
+        speak(answer)
+    else:
+        verb = q.split(' ', 3)[2]
+        q = q.split(' ', 3)[3]
+        res = client.query(q)
+        answer = next(res.results).text
+        answer = q + ' ' + verb + ' ' + answer
+        return answer
 
 def shut_down():
     print("Please verify shutdown by offering security clearance")

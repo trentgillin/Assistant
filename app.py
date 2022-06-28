@@ -63,7 +63,7 @@ def take_query(q):
             break
 
         elif query in event_queries:
-            response = get_events()
+            response = get_events(typed = True)
             break
 
         elif "what is your name" in query:
@@ -80,7 +80,7 @@ def take_query(q):
             break
 
         elif "look up" in query:
-            response = query_wolframalpha(query)
+            response = query_wolframalpha(query, typed = True)
             break
 
         elif query in ["shutdown", "turn off computer"]:
