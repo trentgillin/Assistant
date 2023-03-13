@@ -23,14 +23,20 @@ def tell_time():
         print(hour_st + ":" + min + " AM")
 
 
-def hello(q):
+def hello(q, typed = False):
     if "hello" in q or "hi" in q:
         response = random.choice(greeting_responses)
-        print(response)
-        speak(response)
+        if typed == False:
+            print(response)
+            speak(response)
+        else:
+            print(response)
     else:
-        print(q+", how may I be of service today")
-        speak(str(q)+" how may i be of service today")
+        if typed == False:
+            print(q+", how may I be of service today")
+            speak(str(q)+" how may i be of service today")
+        else:
+            print(q + ", how may I be of service today")
 
 
 def tell_day(typed = False):
@@ -62,7 +68,7 @@ def tell_date():
 
 def query_wolframalpha(q, typed = False):
     client = wolframalpha.Client(wolfram_alpha)
-    if type == False: 
+    if typed == False:
         print("I will look that up")
         speak("i will look that up")
         verb = q.split(' ', 3)[2]
